@@ -49,7 +49,7 @@ class environment (object):
 
 	@staticmethod
 	def setup (conf):
-		if environment._settings:
+		if environment._settings is not None:
 			# nosetest is performing the setup multiple times, so we can not raise anymore
 			# raise RuntimeError('You already initialised the environment')
 			return environment._settings
@@ -58,7 +58,7 @@ class environment (object):
 
 	@staticmethod
 	def settings ():
-		if not environment._settings:
+		if environment._settings is None:
 			raise RuntimeError('You can not have an import using settings() before main() initialised environment')
 		return environment._settings
 
